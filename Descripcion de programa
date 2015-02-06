@@ -69,7 +69,7 @@ y tenemos múltiples alternativas donde ubicamos diferentes códigos de teclado 
 
 En base a la descripcion anteriror comparto el codigo del programa
 
-Compilador
+(Scketch del Compilador)
 
 class Carta {
 
@@ -140,7 +140,7 @@ class Carta {
 }
 
 
-Sketch principal de programa para llamr a las funciones
+(Sketch principal de programa para llamr a las funciones)
 
 Carta carta1, carta2, carta3, carta4;
 int visibles = 0;
@@ -231,7 +231,7 @@ void keyPressed() {
 }
 
 
-En conlusion con esta pequeña guia se puede entender mejor la mecanica del juego implementando if anidado un constructor y funciones
+En conclusion con esta pequeña guia se puede entender mejor la mecanica del juego implementando if anidado un constructor y funciones
 para una guia en video dirigete al siguiente link:
 
 https://www.youtube.com/watch?v=cgjXGu7ur38
