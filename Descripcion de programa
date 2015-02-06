@@ -1,0 +1,68 @@
+# -Juego-de-Fortuna-
+Programacion echa en processing de un juego de fortuna aplicando clases y constructor
+Primero creamos una segunda mesa de trabajo la cual nos ayuda a optimizar el espacio en la mesa principal. En esta segunda mesa es donde podremos crear funciones y un constructor de objetos.
+En la segunda mesa empezamos creando un class con el nombre  de  Carta el cual abarcará  las funciones creadas y también el constructor.
+EL class  es un índice donde puedes almacenar varias cosas en este caso nos servirá para implementar funciones  
+Empezamos declarando algunas variables
+Pvector= Se utiliza para representar agrupaciones de valores que pueden ser  posición velocidad y aceleración que a la vez tienen  magnitud y dirección. 
+String =  Utilizando para dar un valor de cadena(o palabras) a las imágenes que utilizaremos en el juego
+Booleano Nos servirá como detector, cuando la carta este cubierta y descubierta 
+(con los valores abierta y cerrada).
+Pimage son las imágenes que utilizaremos en el juego.
+
+A continuación crearemos el constructor 
+El constructor nos servirá como molde del objeto que vamos a necesitar crear.
+ Tiene que llevar el mismo nombre que le dimos al class, declaramos variables propias del constructor. 
+
+A pos le damos el valor de new pvector 
+Aquí entrelazamos los 2 valores del primer vector creado.
+Lo mismo hacemos en la posición X y Y.   
+e Igual manera con el string =  nombre
+al boolenano lo ponemos en falso para que la carta se encuentre tapada.  
+Cargamos la imagen,  nótese que aquí estamos sumando el string mas el conglomerado de imágenes que hemos cargado.
+En este momento acabamos de crear el constructor el cual será de base para crear las Cartas.
+
+Ahora empezamos con la primera función que la llamaremos: Void crear
+Image mode = El programa así entenderá que queremos tener de referencia principal, el centro de la imagen y no el de la esquina superior derecha de la misma, como viene por default. 
+Rect mode = es el mismo principio que utilizamos en la imagen pero esta vez para las figuras geométricas.
+Text aling = servirá de la misma manera para alinera los textos, ponemos dos CENTER uno sirve horizontalmente y el otro verticalmente. 
+Ahora utilizamos  Condiciones la cual será: sí la carta esta abierta se procederá a dibujar la imagen que cargamos. Si la condición no se cumple en el “else” se dibujara un cuadrado que tape la imagen o simplemente no se destapara la imagen.    
+Creamos una segunda Función que nos ayudara a controlar los eventos que ocurrirán siempre que se de un clic con el mouse. 
+Lo llamaremos void clicMouse,,, declaramos variables las cuales nos ayudarán a darle posición X y posición Y a esta función. 
+Con la primera condición decimos que  solo se destaparan las cartas cuando le damos un click dentro del rectángulo negro. 
+Anidamos condiciones para así lograr que nuestra estructura de control abarque mas condiciones en la misma. 
+
+la segunda condición en cambio va a verificar que cuando demos la vuelta  la 2da carta sucederá las dos siguientes alternativas : 
+si estas cartas son iguales ganas el juego y se desplegara el mensaje de “ ACERTASTE”.
+(aquí se compararan entre los dos Stringn si son equivalentes)
+si no es así se reseteara el juego y saldrá un texto que dice “te equivocaste” 
+algo a tomar en cuenta es que al momento que nos sale te equivocaste o ganaste tendremos la opción de aplastar alt, arriba, o shift para que se nos cambien aleatoriamente las cartas para seguir jugando.  
+
+
+
+Así acabamos la primera mesa ahora iremos con la principal:
+Primero situamos el nombre del constructor, enseguida necesitamos 4 cartas las cuales las ubicamos con un nombre respectivo,
+declaramos un valor entero es decir integer desde cero.
+Acá DAMOS VALORES A LOS STRINGS para ayudar a transformar el string en imagen 
+Los strings no es necesario darle un valor, simplemente necesitamos que se simbolice como tal
+Pimage para cargar las imágenes de las cartas. 
+El booleano nos servirá para pasar de la portada inicial al juego, y en su defecto cuando perdamos o ganemos volver a empezar con una serie de comandos. 
+Volvemos a ubicar variables de imagen para el cual será el fondo y el botón Enter de inicio. 
+Void setup 
+Esta función solo correrá una vez 
+NOTA no cambiar valores pre establecidos la digramacion se altera 
+Les damos valor a las imágenes de fondo y enter.
+Aca damos valor a las cartas es decir nuevo constructor y ubicamos cada carta en el lugar que queremos que ocupe en el scketch.
+_________________________________________________________________________________
+LO que vamos a hacer en  el Void Draw:
+Es comenzar con una condición: que si es verdadera visualizaremos la pantalla de inicio del juego, para negar esta condición tendremos que aplastar la tecla enter, así se crearan las cartas gracias al constructor y a la función void crear. 
+También ubicamos un text aling para alinear bien las palabras de esta parte del juego. 
+
+Void mouse clicked
+
+En este evento utilizaremos al constructor y a la función click del mouse, y básicamente decimos que solo hay como realizar dos movimientos o dos click dentro de las cartas, luego del segundo clic el juego se paralizara para anunciarnos si perdimos o acertamos. 
+
+en Void key pressed
+para finalizar decimos si el código del teclado es igual a enter  nos permitirá acceder al juego 
+y tenemos múltiples alternativas donde ubicamos diferentes códigos de teclado los cuales nos ayudaran a cambiar el orden de las cartas. Los cuales son TAB, ALT, y ARRIBA. 
+
