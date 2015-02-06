@@ -66,3 +66,169 @@ en Void key pressed
 para finalizar decimos si el código del teclado es igual a enter  nos permitirá acceder al juego 
 y tenemos múltiples alternativas donde ubicamos diferentes códigos de teclado los cuales nos ayudaran a cambiar el orden de las cartas. Los cuales son TAB, ALT, y ARRIBA. 
 
+
+En base a la descripcion anteriror comparto el codigo del programa
+
+Compilador
+
+class Carta {
+
+  PVector pos;
+  String nombre;
+  boolean abierta;
+  PImage im;
+
+
+
+  Carta(float x, float y, String nombre_) {
+    pos = new PVector();
+    pos.x = x;
+    pos.y = y;
+    nombre  = nombre_;
+    abierta = false;
+    im = loadImage(nombre+".jpg");
+  }
+
+  void crear() {
+    imageMode(CENTER);
+    rectMode(CENTER);
+    textAlign(CENTER, CENTER);
+    if (abierta) {
+
+      image(im, pos.x, pos.y, 140, 200);
+    } else {
+      fill(0, 0, 0);
+      rect(pos.x, pos.y, 140, 200);
+    }
+  }
+
+  void clicMouse(float m, float n) {
+    textAlign(CENTER, CENTER);
+    if (m < pos.x+70 && m > pos.x-70 && n < pos.y+100 && n > pos.y-100) {
+      if (abierta==true) {
+        abierta = true;
+        visibles = visibles+1;
+      } else {
+        abierta = true;
+        visibles = visibles+1; 
+        if (visibles == 1) {
+          valorCarta1 = nombre;
+        } else if (visibles ==2) {
+          valorCarta2=nombre;
+          if (valorCarta2.equals(valorCarta1)) { 
+            fill(255);
+            textSize(25);
+            textSize(30);
+            text("ACERTASTE", width/2, height/9.2); 
+             textSize(20);
+            text("aplasta ENTER, TAB, ATL o ARRIBA para continuar", width/2, height/6.4);
+            noStroke();
+           
+          } else {
+            fill(255);
+             textSize(20);
+            text("aplasta ENTER, TAB, ATL o ARRIBA para continuar", width/2, height/6.4);
+
+            fill(0);
+            textSize(25);
+            text("PERDISTE", width/2, height/1.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+Sketch principal de programa para llamr a las funciones
+
+Carta carta1, carta2, carta3, carta4;
+int visibles = 0;
+String valorCarta1 = "";
+String valorCarta2 = "";
+PImage images; 
+boolean gameOver = true;
+PImage imFondo;
+PImage enter;
+
+void setup() {
+  size(700, 700);
+  imFondo= loadImage("fondo.jpg");
+  imageMode(CENTER);
+  image(imFondo, width/2, height/2);
+  enter= loadImage("Boton.png");
+  image(enter, width/1.55, height/1.8, 80, 70);
+  textAlign(CENTER, CENTER); 
+  carta1 = new Carta(width/3, height/1.5, "CARTA1");
+  carta2 = new Carta(width/1.5, height/1.5, "CARTA2");
+  carta3 = new Carta(width/1.5, height/3, "CARTA1");
+  carta4 = new Carta(width/3, height/3, "CARTA2");
+}
+
+void draw() {
+
+  textAlign(CENTER, CENTER); 
+  if (gameOver == true) {
+    textSize(40);    
+    fill(300, 0, 150);
+    text("JUEGO DE FORTUNA", width/2, height/2.5); 
+    text("PRESIONA", width/2.3, height/1.8);
+    text("PARA CONTINUAR", width/2, height/1.4);
+  } else {
+
+    carta1.crear();
+    carta2.crear();
+    carta3.crear();
+    carta4.crear();
+    fill(0, 200, 200);
+  }
+}
+void mouseClicked() {
+  if ( visibles <2) {
+    carta1.clicMouse(mouseX, mouseY);
+    carta2.clicMouse(mouseX, mouseY);
+    carta3.clicMouse(mouseX, mouseY);
+    carta4.clicMouse(mouseX, mouseY);
+  }
+}
+void keyPressed() {
+  if (keyCode == ENTER) {
+
+    if (gameOver == true) {
+      gameOver = false;
+    }
+
+    background(0, 200, 200);
+    carta1 = new Carta(width/3, height/1.5, "CARTA1");
+    carta2 = new Carta(width/1.5, height/1.5, "CARTA2");
+    carta3 = new Carta(width/1.5, height/3, "CARTA1");
+    carta4 = new Carta(width/3, height/3, "CARTA2");
+
+    visibles=0;
+  } else if (keyCode == ALT) {
+    background(0, 200, 200);
+    carta1 = new Carta(width/3, height/1.5, "CARTA2");
+    carta2 = new Carta(width/1.5, height/1.5, "CARTA2");
+    carta3 = new Carta(width/1.5, height/3, "CARTA1");
+    carta4 = new Carta(width/3, height/3, "CARTA1");
+    visibles=0;
+  } else if (keyCode == TAB) {
+    background(0, 200, 200);
+    carta1 = new Carta(width/3, height/1.5, "CARTA2");
+    carta2 = new Carta(width/1.5, height/1.5, "CARTA1");
+    carta3 = new Carta(width/1.5, height/3, "CARTA1");
+    carta4 = new Carta(width/3, height/3, "CARTA2");
+
+    visibles=0;
+  } else if (keyCode == UP) {
+    background(0, 200, 200);
+    carta1 = new Carta(width/3, height/1.5, "CARTA2");
+    carta2 = new Carta(width/1.5, height/1.5, "CARTA1");
+    carta3 = new Carta(width/1.5, height/3, "CARTA2");
+    carta4 = new Carta(width/3, height/3, "CARTA1");
+    visibles=0;
+  }
+}
+
+
+En conlusion con esta pequeña guia se puede entender mejor la mecanica del juego implementando if anidado un constructor y funciones
